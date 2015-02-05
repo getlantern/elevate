@@ -1,13 +1,13 @@
-// package escalate provides support for executing commands with escalated
+// package elevate provides support for executing commands with elevated
 // privileges.
-package escalate
+package elevate
 
 import (
 	"os/exec"
 )
 
 // Command is like exec.Command, except that it runs the given command with
-// escalated privileges.
+// elevated privileges.
 func Command(name string, args ...string) *exec.Cmd {
 	cmd, err := buildCommand("", "", name, args...)
 	if err != nil {
@@ -16,7 +16,7 @@ func Command(name string, args ...string) *exec.Cmd {
 	return cmd
 }
 
-// Prompt is like Command, except the escalation prompt contains the custom
+// Prompt is like Command, except the elevation prompt contains the custom
 // prompt string.
 func Prompt(prompt string, name string, args ...string) *exec.Cmd {
 	cmd, err := buildCommand(prompt, "", name, args...)
@@ -26,7 +26,7 @@ func Prompt(prompt string, name string, args ...string) *exec.Cmd {
 	return cmd
 }
 
-// PromptWithIcon is like Prompt, except that hte escalation prompt also
+// PromptWithIcon is like Prompt, except that hte elevation prompt also
 // includes an icon loaded from the given path.
 func PromptWithIcon(prompt string, icon string, name string, args ...string) *exec.Cmd {
 	cmd, err := buildCommand(prompt, icon, name, args...)

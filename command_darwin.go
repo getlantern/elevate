@@ -1,11 +1,11 @@
-package escalate
+package elevate
 
 import (
 	"fmt"
 	"os/exec"
 
 	"github.com/getlantern/byteexec"
-	"github.com/getlantern/escalate/bin"
+	"github.com/getlantern/elevate/bin"
 )
 
 func buildCommand(prompt string, icon string, name string, args ...string) (*exec.Cmd, error) {
