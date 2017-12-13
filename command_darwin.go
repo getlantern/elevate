@@ -2,7 +2,9 @@ package elevate
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
+	"path/filepath"
 
 	"github.com/getlantern/byteexec"
 	"github.com/getlantern/elevate/bin"
@@ -29,7 +31,8 @@ func buildCommand(prompt string, icon string, name string, args ...string) (*exe
 	if err != nil {
 		return nil, fmt.Errorf("Unable to load cocoasudo: %v", err)
 	}
-	be, err := byteexec.New(cocoasudo, "cocoasudo")
+	_, program := filepath.Split(os.Args[0])
+	be, err := byteexec.New(cocoasudo, program)
 	if err != nil {
 		return nil, fmt.Errorf("Unable to build byteexec for cocoasudo: %v", err)
 	}

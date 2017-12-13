@@ -8,3 +8,5 @@ thing but with a better prompt.
 On OS X, it uses cocoasudo from here - https://github.com/getlantern/cocoasudo,
 forked from https://github.com/kalikaneko/cocoasudo to explicitly support OSX
 10.6.
+
+On Windows, it uses elevate from here - http://code.kliu.org/misc/elevate/.
