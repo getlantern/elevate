@@ -2,8 +2,6 @@
 
 
 BASE_NAME=elevate
-# Force 32 bit architecture for build
-ARCH=x86-32
 
 
 !IF "$(ARCH)" != "x86-32" && "$(ARCH)" != "x86-64"
@@ -36,7 +34,7 @@ CPPFLAGS_DEF_EX=
 
 
 # Linker output type: Subsystem
-LINKFLAGS_SUB=WINDOWS
+LINKFLAGS_SUB=CONSOLE
 
 
 # Additional library paths
