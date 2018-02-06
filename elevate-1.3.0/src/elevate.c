@@ -21,9 +21,7 @@ __forceinline BOOL IsFlag( PCTSTR pszArg );
 __forceinline BOOL CheckFlagI( PCTSTR pszArg, TCHAR ch );
 __forceinline BOOL ReadEnvironmentVariable( PCTSTR pszName, PTSTR pszBuffer, DWORD cchBuffer );
 
-#pragma comment(linker, "/entry:elevate")
-void elevate( )
-{
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow) {
 	LAUNCHMODE mode = MODE_NORMAL;
 	BOOL fWait = FALSE;
 	BOOL fNoPushD = FALSE;

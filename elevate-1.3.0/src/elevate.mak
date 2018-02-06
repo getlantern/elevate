@@ -2,6 +2,8 @@
 
 
 BASE_NAME=elevate
+# Force 32 bit architecture for build
+ARCH=x86-32
 
 
 !IF "$(ARCH)" != "x86-32" && "$(ARCH)" != "x86-64"
@@ -34,7 +36,7 @@ CPPFLAGS_DEF_EX=
 
 
 # Linker output type: Subsystem
-LINKFLAGS_SUB=CONSOLE
+LINKFLAGS_SUB=WINDOWS
 
 
 # Additional library paths
@@ -98,7 +100,7 @@ CPPFLAGS_STD_VER=/GS-
 
 
 # Standard compiler options
-CPPFLAGS_STD=/nologo /c /MD /W3 /GF /GR- /EHs-c- /O1
+CPPFLAGS_STD=/nologo /c /MT /W3 /GF /GR- /EHs-c- /O1
 # Standard definitions
 CPPFLAGS_DEF_STD=/D "WIN32" /D "NDEBUG" /D "_UNICODE" /D "UNICODE" /D "_WIN32_WINNT=$(NTVER_DEF)"
 
