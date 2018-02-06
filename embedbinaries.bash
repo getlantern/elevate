@@ -17,7 +17,7 @@ then
 	die "$0: Please set BNS_CERT and BNS_CERT_PASS to the bns_cert.p12 signing key and the password for that key"
 fi
 
-osslsigncode sign -pkcs12 "$BNS_CERT" -pass "$BNS_CERT_PASS" -in binaries/windows/elevate_unsigned.exe -out binaries/windows/elevate.exe || die "Could not sign windows"
+osslsigncode sign -pkcs12 "$BNS_CERT" -pass "$BNS_CERT_PASS" -in binaries/windows_unsigned/elevate_unsigned.exe -out binaries/windows/elevate.exe || die "Could not sign windows"
 codesign -s "Developer ID Application: Brave New Software Project, Inc" -f binaries/osx/cocoasudo || die "Could not sign macintosh"
 
 go-bindata -nomemcopy -nocompress -pkg bin -prefix binaries/osx -o bin/cocoasudo_darwin.go binaries/osx

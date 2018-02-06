@@ -9,4 +9,8 @@ On OS X, it uses cocoasudo from here - https://github.com/getlantern/cocoasudo,
 forked from https://github.com/kalikaneko/cocoasudo to explicitly support OSX
 10.6.
 
-On Windows, it uses elevate from here - http://code.kliu.org/misc/elevate/.
+On Windows, it uses elevate from here - http://code.kliu.org/misc/elevate/. The
+source code lives in elevate-1.3.0/src and can be built from a Visual Studio
+command line by running `nmake elevat.mak`. The elevate makefile has been
+modified from the original to 1. always build as 32 bit and 2. build as a
+windows GUI app instead of a console app.
