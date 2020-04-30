@@ -15,6 +15,7 @@ func main() {
 	out, err := elevate.Command(os.Args[1], os.Args[2:]...).CombinedOutput()
 	fmt.Println(string(out))
 	if err != nil {
+		fmt.Printf("Unexpected error '%v'\n", err)
 		os.Exit(1)
 	}
 }
