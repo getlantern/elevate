@@ -8,11 +8,10 @@ import (
 	"path/filepath"
 
 	"github.com/getlantern/byteexec"
-	"github.com/getlantern/elevate/bin"
 )
 
 //go:embed binaries/windows/elevate.exe
-var cocoasudo []byte
+var elevate []byte
 
 func buildCommand(prompt string, icon string, name string, args ...string) (*exec.Cmd, error) {
 	argsLen := len(args)
@@ -27,7 +26,7 @@ func buildCommand(prompt string, icon string, name string, args ...string) (*exe
 	allArgs = append(allArgs, name)
 	allArgs = append(allArgs, args...)
 	_, program := filepath.Split(os.Args[0])
-	be, err := byteexec.New(cocoasudo, program)
+	be, err := byteexec.New(elevate, program)
 	if err != nil {
 		return nil, fmt.Errorf("Unable to build byteexec for cocoasudo: %v", err)
 	}
