@@ -1,14 +1,17 @@
 package elevate
 
 import (
+	_ "embed"
 	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
 
 	"github.com/getlantern/byteexec"
-	"github.com/getlantern/elevate/bin"
 )
+
+//go:embed binaries/osx/cocoasudo
+var cocoasudo []byte
 
 func buildCommand(prompt string, icon string, name string, args ...string) (*exec.Cmd, error) {
 	argsLen := len(args)
@@ -27,14 +30,10 @@ func buildCommand(prompt string, icon string, name string, args ...string) (*exe
 	}
 	allArgs = append(allArgs, name)
 	allArgs = append(allArgs, args...)
-	cocoasudo, err := bin.Asset("cocoasudo")
-	if err != nil {
-		return nil, fmt.Errorf("Unable to load cocoasudo: %v", err)
-	}
 	_, program := filepath.Split(os.Args[0])
 	be, err := byteexec.New(cocoasudo, program)
 	if err != nil {
-		return nil, fmt.Errorf("Unable to build byteexec for cocoasudo: %v", err)
+		return nil, fmt.Errorf("unable to build byteexec for cocoasudo: %v", err)
 	}
 
 	return be.Command(allArgs...), nil

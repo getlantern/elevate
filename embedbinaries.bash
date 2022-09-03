@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ###############################################################################
 #
@@ -7,8 +7,10 @@
 #
 ###############################################################################
 
+set -euo pipefail
+
 function die() {
-  echo $*
+  echo "$*"
   exit 1
 }
 
@@ -18,9 +20,5 @@ then
 fi
 
 osslsigncode sign -pkcs12 "$BNS_CERT" -pass "$BNS_CERT_PASS" -in binaries/windows_unsigned/elevate_unsigned.exe -out binaries/windows/elevate.exe || die "Could not sign windows"
-codesign -s "Developer ID Application: Brave New Software Project, Inc" -f binaries/osx/cocoasudo || die "Could not sign macintosh"
-
-go-bindata -nomemcopy -nocompress -pkg bin -prefix binaries/osx -o bin/cocoasudo_darwin.go binaries/osx
-#go-bindata -nomemcopy -nocompress -pkg bin -prefix binaries/linux_386 -o natty/bin/linux_386.go binaries/linux_386
-#go-bindata -nomemcopy -nocompress -pkg bin -prefix binaries/linux_amd64 -o natty/bin/linux_amd64.go binaries/linux_amd64
-go-bindata -nomemcopy -nocompress -pkg bin -prefix binaries/windows -o bin/elevate_windows.go binaries/windows
+#codesign -s "Developer ID Application: Brave New Software Project, Inc" -f binaries/osx/cocoasudo || die "Could not sign macintosh"
+codesign --options runtime --strict --timestamp --force --deep -r="designated => anchor trusted and identifier com.getlantern.lantern" -s "Developer ID Application: Innovate Labs LLC (4FYC28AXA2)" -v binaries/osx/cocoasudo
